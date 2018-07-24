@@ -3,9 +3,13 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="1.0">
   <xsl:output method="xml" indent="yes" encoding="UTF-8"
     cdata-section-elements="system-out system-err failure"/>
-  <xsl:decimal-format decimal-separator="." grouping-separator=","/>
-
-  <xsl:template match="testsuite">
+ <xsl:decimal-format decimal-separator="." grouping-separator=","/>
+  <xsl:template match = "testsuites">
+     <testsuites>
+                <xsl:apply-templates select = "testsuite" />
+    </testsuites> 
+   </xsl:template>  
+    <xsl:template match="testsuite">
     <testsuite>
       <xsl:if test="@name">
         <xsl:attribute name="name">
@@ -46,7 +50,7 @@
     <testcase>
       <xsl:if test="@classname">
         <xsl:attribute name="classname">
-          <xsl:value-of select="../@name"></xsl:value-of><xsl:text>.</xsl:text><xsl:value-of select="@classname"/>
+         <xsl:value-of select="@classname"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:if test="@name">
@@ -68,4 +72,6 @@
     </testcase>
   </xsl:template>
 </xsl:stylesheet>
+
+
 
