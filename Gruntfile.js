@@ -1,7 +1,10 @@
 module.exports = function( grunt ) {
     grunt.initConfig( {
         qunit: {
-            all: ["test.html","foo.html","bar.html"]
+            all: [
+                    'test/fixtures/many_html/**/*.html',
+                    'test/fixtures/single_html/testrunner.html'
+                 ]
         }
     } );
     grunt.loadNpmTasks( "grunt-contrib-qunit" );
